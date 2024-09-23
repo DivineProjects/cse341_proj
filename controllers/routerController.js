@@ -1,4 +1,9 @@
 
+// home route
+const homePage = (req, res) => {
+    res.sendFile('index.html', { root: 'frontend' });
+    // res.send('Welcome indexe');
+};
 
 // home route
 const home = (req, res) =>{
@@ -19,6 +24,7 @@ const logout=(req,res) =>{
 module.exports = {
     home,
     login,
-    logout
+    logout,
+    homePage
 };
 
