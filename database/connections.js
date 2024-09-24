@@ -1,45 +1,26 @@
 const { MongoClient } = require('mongodb');
 const mongoose = require('mongoose');
-
-
-// connect to database
-async function main() { 
-    const url = "mongodb+srv://jigudivinea:Dateng2018.@cluster0.7pmui.mongodb.net/";
-    const client = new MongoClient(url);
-
-    try {
-        await client.connect();
-        await listDatabases(client);
-        
-    } catch (e) {
-        console.error(e);
-    }finally{
-        await client.close();
-    }
-
-}
-
-
-// main().catch(console.error);
-
-async function listDatabases(client){
-    const databasesList = await client.db().admin().listDatabases(); // collects list of databases
-    console.log("Databases");
-    console.log(databasesList);
-    databasesList.database.forEach(db=> {
-        console.log(`- ${db.name}`);
-    });
-    console.log( )
-}
+require('dotenv').config();
 
 const connectDb = async()=>{
     const URL = "mongodb+srv://jigudivinea:Dateng2018.@cluster0.7pmui.mongodb.net/";
     await mongoose.connect(URL);
     console.log('our db has connected');
 }
+/// connect to mongodb
 
+const connectDB = async () => {
+    try {
+        await mongoose.connect(process.env.MONGODB_URI);
+        console.log('MongoDB connected');
+    } catch (error) {
+        console.error('MongoDB connection error:', error);
+        process.exit(1);
+    }
+};
 
 module.exports = {
-    listDatabases,
-    connectDb
+    connectDb,
+    connectDB
 };
+

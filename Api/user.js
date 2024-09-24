@@ -4,11 +4,11 @@ const User = require('../database/user');
 const route = express.Router();
 
 route.post('/', async(req, res) => {
-    const {firstName, lastName} = req.body; // record names
+    const {name, email} = req.body; // record names
     // add them to user
     let user = {};
-    user.firstName = firstName;
-    user.lastName = lastName;
+    user.name = name;
+    user.email = email;
     let userModel = new User(user);
     await userModel.save(); // save to database
 
