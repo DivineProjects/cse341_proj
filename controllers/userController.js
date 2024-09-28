@@ -7,7 +7,7 @@ const createUser = async (req, res) => {
         const newUser = new User({ firstName, lastName, email, favoriteColor, birthday });
         await newUser.save();
         res.status(201).json(newUser);
-        console.log('Data entered')
+        console.log('User Data entered')
     } catch (error) {
         res.status(500).json({ message: 'Error creating user', error });
     }
